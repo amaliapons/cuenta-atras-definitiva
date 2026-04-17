@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un año de nosotros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Los colores exactos de tu revista */
+            --bg-color: #f1f1f1;       /* Gris muy clarito para el fondo general */
+            --card-bg: #fff9ea;        /* Tono crema para el recuadro principal */
+            --primary-color: #7695aa;  /* Azul/gris elegante para botones y corazón */
+            --text-color: #4a4a4a;     /* Gris oscuro para los párrafos */
+            --title-color: #222222;    /* Gris casi negro para los títulos grandes */
+        }
+        
+        body {
+            font-family: 'Forum', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 85%;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra muy suave */
+        }
+
+        h1, h2 {
+            font-weight: normal; 
+            color: var(--title-color); /* Aplicamos tu nuevo color aquí */
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 1.2em; 
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        /* Frase romántica */
+        blockquote {
+            font-size: 1.4em;
+            color: var(--primary-color);
+            margin: 30px auto;
+            padding: 15px 10px;
+            border-top: 1px solid rgba(118, 149, 170, 0.3);
+            border-bottom: 1px solid rgba(118, 149, 170, 0.3);
+        }
+
+        /* Imagen: sin marco y con sombra suave */
+        img {
+            max-width: 200px; 
+            height: auto;
+            border-radius: 12px;
+            margin: 20px 0;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1); 
+        }
+
+        button {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1.5px solid var(--primary-color);
+            padding: 12px 30px;
+            font-family: 'Forum', serif;
+            font-size: 1.3em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+            transform: translateY(-2px); 
+        }
+
+        #page2 {
+            display: none;
+        }
+
+        /* Corazón difuminado */
+        .heart-container {
+            position: relative;
+            display: inline-block;
+            margin: 40px 0;
+        }
+
+        .heart-svg {
+            width: 250px;
+            height: 250px;
+            fill: var(--primary-color);
+            filter: blur(8px); 
+            opacity: 0.8;
+            animation: pulse 3s infinite;
+        }
+
+        .heart-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: 'Forum', serif;
+            font-size: 1.8em;
+            width: 90%;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); filter: blur(8px); }
+            50% { transform: scale(1.05); filter: blur(12px); }
+            100% { transform: scale(1); filter: blur(8px); }
+        }
+
+        #timer {
+            font-size: 0.9em;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="container">
+        <h1>Un año de nosotros</h1>
+        <p>Bienvenido a la página web de la edición especial de nuestra revista del 27 de abril.</p>
+        
+        <img src="foto-juntos.jpg" alt="Nosotros">
+        
+        <blockquote>
+            "Eres la forma más bonita <br>
+            que ha tenido la vida de enseñarme <br>
+            que vale la pena arriesgarse a amar"
+        </blockquote>
+        
+        <p>En la última página de la revista hay una lista de planes por hacer juntos, pero... ¿cuándo podremos empezar a hacerlos?</p>
+        
+        <button id="btn-next">Pulsa para saber más</button>
+    </div>
+
+    <div id="page2" class="container">
+        <h2>Próximamente...</h2>
+        
+        <div class="heart-container">
+            <svg class="heart-svg" viewBox="0 0 32 29.6">
+                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+            </svg>
+            <div class="heart-text" id="countdown-text">
+                Cuenta atrás definitiva
+                <div id="timer"></div>
+            </div>
+        </div>
+
+        <img src="mapa-europa.jpg" alt="Mapa" style="max-width: 450px;">
+    </div>
+
+    <script>
+        document.getElementById('btn-next').addEventListener('click', function() {
+            document.getElementById('page1').style.display = 'none';
+            document.getElementById('page2').style.display = 'block';
+            window.scrollTo(0, 0);
+        });
+
+        /* =========================================================
+           CÓDIGO DE LA CUENTA ATRÁS (PARA CUANDO SEPAS LA FECHA)
+           =========================================================
+           Cuando sepas qué día vuelves, borra los símbolos "/*" y "* /" 
+           que envuelven este código y pon tu fecha.
+        */
+        
+        /*
+        const fechaVuelta = new Date(2026, 5, 20, 12, 0, 0).getTime(); 
+        document.getElementById('countdown-text').innerHTML = 'Vuelvo a casa en:<br><div id="timer"></div>';
+
+        const x = setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = fechaVuelta - ahora;
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+            
+            document.getElementById("timer").innerHTML = dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+            
+            if (distancia < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "¡POR FIN JUNTOS!";
+            }
+        }, 1000);
+        */
+    </script>
+</body>
+</html>
