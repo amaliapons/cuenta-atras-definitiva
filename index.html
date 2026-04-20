@@ -3,207 +3,530 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Un año de nosotros</title>
-    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+    <title>A&A - 1 Año de Nosotros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            /* Los colores exactos de tu revista */
-            --bg-color: #f1f1f1;       /* Gris muy clarito para el fondo general */
-            --card-bg: #fff9ea;        /* Tono crema para el recuadro principal */
-            --primary-color: #7695aa;  /* Azul/gris elegante para botones y corazón */
-            --text-color: #4a4a4a;     /* Gris oscuro para los párrafos */
-            --title-color: #222222;    /* Gris casi negro para los títulos grandes */
+            --bg-color: #fcf9f2; 
+            --text-dark: #3a1c1d; 
+            --text-light: #5a4a4a; 
+            --accent-color: #8c474f; 
+            --pink-bg: #f7e6e8; /* Color rosa suave para el Acerca de */
         }
-        
-        body {
-            font-family: 'Forum', serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+
+        /* --- Desplazamiento Suave --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden; /* Evita que los corazones flotantes ensanchen la pantalla */
+        }
+
+        h1, h2, h3, .logo, blockquote {
+            font-family: 'Playfair Display', serif; 
+            font-weight: 400;
+            margin: 0;
         }
 
         .container {
-            max-width: 500px;
-            width: 85%;
-            margin: 40px auto;
-            padding: 30px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombra muy suave */
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
         }
 
-        h1, h2 {
-            font-weight: normal; 
-            color: var(--title-color); /* Aplicamos tu nuevo color aquí */
-            font-size: 2.8em;
-            margin-bottom: 15px;
-            margin-top: 10px;
+        /* Cabecera */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+            position: sticky; /* Hace que el menú se quede arriba al bajar */
+            top: 0;
+            background-color: rgba(252, 249, 242, 0.95);
+            z-index: 100;
         }
 
-        p {
-            font-size: 1.2em; 
-            line-height: 1.6;
-            margin: 15px 0;
+        .logo {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Frase romántica */
-        blockquote {
-            font-size: 1.4em;
-            color: var(--primary-color);
-            margin: 30px auto;
-            padding: 15px 10px;
-            border-top: 1px solid rgba(118, 149, 170, 0.3);
-            border-bottom: 1px solid rgba(118, 149, 170, 0.3);
+        nav {
+            display: flex;
+            gap: 2rem;
         }
 
-        /* Imagen: sin marco y con sombra suave */
-        img {
-            max-width: 200px; 
-            height: auto;
-            border-radius: 12px;
-            margin: 20px 0;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1); 
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            transition: color 0.3s;
+            font-weight: bold;
         }
 
-        button {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 1.5px solid var(--primary-color);
-            padding: 12px 30px;
-            font-family: 'Forum', serif;
-            font-size: 1.3em;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
+        nav a:hover {
+            color: var(--text-dark);
         }
 
-        button:hover {
-            background-color: var(--primary-color);
-            color: var(--card-bg);
-            transform: translateY(-2px); 
+        /* Hero */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 4rem;
+            margin-bottom: 6rem;
+            gap: 2rem;
         }
 
-        #page2 {
-            display: none;
+        .hero-title {
+            flex: 1;
+            font-size: 5rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
         }
 
-        /* Corazón difuminado */
-        .heart-container {
-            position: relative;
+        .hero-content {
+            flex: 0 0 300px;
+            padding-top: 1rem;
+        }
+
+        .hero-content p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .btn {
             display: inline-block;
-            margin: 40px 0;
-        }
-
-        .heart-svg {
-            width: 250px;
-            height: 250px;
-            fill: var(--primary-color);
-            filter: blur(8px); 
-            opacity: 0.8;
-            animation: pulse 3s infinite;
-        }
-
-        .heart-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            background-color: var(--accent-color);
             color: white;
-            font-family: 'Forum', serif;
-            font-size: 1.8em;
-            width: 90%;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3); 
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+            border: none; /* Reset para el botón */
+            cursor: pointer; /* Reset para el botón */
+            font-family: 'Lato', sans-serif;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); filter: blur(8px); }
-            50% { transform: scale(1.05); filter: blur(12px); }
-            100% { transform: scale(1); filter: blur(8px); }
+        .btn:hover {
+            opacity: 0.9;
         }
 
-        #timer {
-            font-size: 0.9em;
-            margin-top: 10px;
-            letter-spacing: 1px;
+        /* Galería */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 8rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            height: 500px; 
+            overflow: hidden;
+            background-color: #efeae0; 
+        }
+
+        .gallery-item:nth-child(1) { height: 450px; margin-top: 50px; }
+        .gallery-item:nth-child(2) { height: 550px; }
+        .gallery-item:nth-child(3) { height: 500px; }
+        .gallery-item:nth-child(4) { height: 480px; margin-top: -50px; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03); 
+        }
+
+        /* Encuentros */
+        .footer-section {
+            text-align: center;
+            padding-top: 4rem;
+            padding-bottom: 2rem;
+        }
+
+        .footer-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .encuentros-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem; 
+            margin-top: 3rem;
+            text-align: left; 
+        }
+
+        .evento-card {
+            display: flex;
+            border: 1px solid #dcd3c6; 
+            background-color: var(--bg-color);
+            min-height: 350px; 
+        }
+
+        .evento-info {
+            flex: 1; 
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .evento-info h3 {
+            font-family: 'Lato', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .evento-detalles {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        .btn-evento {
+            margin-top: 2rem;
+            display: inline-block;
+            background-color: #635353; 
+            color: white;
+            padding: 10px 24px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            width: fit-content;
+            transition: opacity 0.3s;
+        }
+
+        .btn-evento:hover {
+            opacity: 0.9;
+        }
+
+        .evento-img {
+            flex: 1; 
+        }
+
+        .evento-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block;
+        }
+
+        /* Contadores */
+        .countdown-display {
+            margin-top: 1.5rem;
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-color);
+            font-weight: bold;
+            display: flex;
+            gap: 15px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        .time-unit span {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        /* --- Nueva Sección: Acerca de --- */
+        .acerca-de-section {
+            background-color: var(--pink-bg);
+            padding: 6rem 5%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .acerca-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .acerca-de-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .acerca-de-section p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cita Final */
+        .quote-section {
+            text-align: center;
+            padding: 5rem 5% 6rem 5%;
+        }
+
+        .quote-section blockquote {
+            font-size: 2.2rem;
+            font-style: italic;
+            color: var(--text-dark);
+            line-height: 1.4;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* --- Estilos para los Corazones Flotantes --- */
+        .heart-particle {
+            position: fixed;
+            bottom: -20px; /* Comienza justo debajo de la pantalla */
+            color: var(--accent-color);
+            font-size: 2rem;
+            pointer-events: none; /* El usuario no puede hacer clic en ellos */
+            animation: floatUp 4s ease-out forwards;
+            opacity: 0.8;
+            z-index: 999; /* Asegura que estén sobre todo lo demás */
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-105vh) rotate(360deg); /* Sube más allá de la parte superior */
+                opacity: 0; /* Desvanece */
+            }
+        }
+
+        /* --- Adaptación para Móviles --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                margin-top: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .hero-content {
+                flex: auto;
+                width: 100%;
+            }
+
+            nav {
+                display: none; 
+            }
+
+            .gallery {
+                grid-template-columns: 1fr; 
+                gap: 1rem;
+            }
+
+            .gallery-item, 
+            .gallery-item:nth-child(1), 
+            .gallery-item:nth-child(2), 
+            .gallery-item:nth-child(3), 
+            .gallery-item:nth-child(4) {
+                height: 400px;
+                margin-top: 0; 
+            }
+
+            .footer-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .evento-card {
+                flex-direction: column; 
+            }
+            .evento-info {
+                padding: 2rem; 
+            }
+            .evento-img {
+                height: 300px; 
+            }
+
+            .acerca-de-section {
+                padding: 4rem 5%;
+            }
+            
+            .acerca-de-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .quote-section blockquote {
+                font-size: 1.6rem;
+                padding: 0 1rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="page1" class="container">
-        <h1>Un año de nosotros</h1>
-        <p>Bienvenido a la página web de la edición especial de nuestra revista del 27 de abril.</p>
-        
-        <img src="foto-juntos.jpg" alt="Nosotros">
-        
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span style="color: var(--accent-color);">♥</span> 1 año de nosotros
+            </div>
+            <nav>
+                <a href="#encuentros">Próximos encuentros</a>
+                <a href="#acerca-de">Acerca de</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1 class="hero-title">Celebrando<br>Nuestro Amor</h1>
+            <div class="hero-content">
+                <p>¡Bienvenido a nuestro espacio! Esta es la página web de la revista edición especial del 27 de abril. Descubre aquí todas las novedades.</p>
+                <button class="btn" id="corazonesBtn">Corazones</button>
+            </div>
+        </section>
+
+        <section class="gallery">
+            <div class="gallery-item"><img src="tu-foto-1.jpg" alt="Recuerdo 1"></div>
+            <div class="gallery-item"><img src="tu-foto-2.jpg" alt="Recuerdo 2"></div>
+            <div class="gallery-item"><img src="tu-foto-3.jpg" alt="Recuerdo 3"></div>
+            <div class="gallery-item"><img src="tu-foto-4.jpg" alt="Recuerdo 4"></div>
+        </section>
+
+        <section class="footer-section" id="encuentros">
+            <h2>Próximos Encuentros</h2>
+            
+            <div class="encuentros-container">
+                <div class="evento-card">
+                    <div class="evento-info">
+                        <h3>Tu última visita a Finlandia</h3>
+                        <p class="evento-detalles">12 de mayo, 2026</p>
+                        <p class="evento-detalles">Helsinki, Finlandia</p>
+                        <div id="timer-visita" class="countdown-display"></div>
+                    </div>
+                    <div class="evento-img">
+                        <img src="foto-visita.jpg" alt="Visita">
+                    </div>
+                </div>
+
+                <div class="evento-card">
+                    <div class="evento-info">
+                        <h3>Vuelvo a casa</h3>
+                        <p class="evento-detalles">Valencia, España</p>
+                        <div id="timer-vuelta" class="countdown-display">Próximamente...</div>
+                    </div>
+                    <div class="evento-img">
+                        <img src="foto-vuelta.jpg" alt="Regreso">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="acerca-de-section" id="acerca-de">
+        <div class="acerca-container">
+            <h2>Nuestra Historia</h2>
+            <p>Este espacio ha sido creado con muchísimo amor para la persona a la que más quiero del mundo. Después de casi 9 meses de relación a distancia, la cosa va llegando a su fin. En esta página web puedes ver las dos últimas cuentas atrás que nos quedan.</p>
+            <p>Gracias por este primer año lleno de videollamadas, paciencia, reencuentros mágicos y sobre todo, lleno de amor. Por todo lo que hemos construido y por todas las aventuras que aún nos quedan por vivir juntos.</p>
+        </div>
+    </section>
+
+    <section class="quote-section">
         <blockquote>
             "Eres la forma más bonita <br>
             que ha tenido la vida de enseñarme <br>
             que vale la pena arriesgarse a amar"
         </blockquote>
-        
-        <p>En la última página de la revista hay una lista de planes por hacer juntos, pero... ¿cuándo podremos empezar a hacerlos?</p>
-        
-        <button id="btn-next">Pulsa para saber más</button>
-    </div>
-
-    <div id="page2" class="container">
-        <h2>Próximamente...</h2>
-        
-        <div class="heart-container">
-            <svg class="heart-svg" viewBox="0 0 32 29.6">
-                <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
-                c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
-            </svg>
-            <div class="heart-text" id="countdown-text">
-                Cuenta atrás definitiva
-                <div id="timer"></div>
-            </div>
-        </div>
-
-        <img src="mapa-europa.jpg" alt="Mapa" style="max-width: 450px;">
-    </div>
+    </section>
 
     <script>
-        document.getElementById('btn-next').addEventListener('click', function() {
-            document.getElementById('page1').style.display = 'none';
-            document.getElementById('page2').style.display = 'block';
-            window.scrollTo(0, 0);
-        });
-
-        /* =========================================================
-           CÓDIGO DE LA CUENTA ATRÁS (PARA CUANDO SEPAS LA FECHA)
-           =========================================================
-           Cuando sepas qué día vuelves, borra los símbolos "/*" y "* /" 
-           que envuelven este código y pon tu fecha.
-        */
-        
-        /*
-        const fechaVuelta = new Date(2026, 5, 20, 12, 0, 0).getTime(); 
-        document.getElementById('countdown-text').innerHTML = 'Vuelvo a casa en:<br><div id="timer"></div>';
-
-        const x = setInterval(function() {
-            const ahora = new Date().getTime();
-            const distancia = fechaVuelta - ahora;
-            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+        // --- Script de Cuenta Atrás (Ya existente) ---
+        function startCountdown(targetDate, elementId) {
+            const element = document.getElementById(elementId);
             
-            document.getElementById("timer").innerHTML = dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    element.innerHTML = "¡YA ESTÁS AQUÍ!";
+                    return;
+                }
+
+                element.innerHTML = `
+                    <div class="time-unit"><span>${days}</span>d</div>
+                    <div class="time-unit"><span>${hours}</span>h</div>
+                    <div class="time-unit"><span>${minutes}</span>m</div>
+                    <div class="time-unit"><span>${seconds}</span>s</div>
+                `;
+            }, 1000);
+        }
+
+        // Activación del contador para el 12 de Mayo de 2026 a las 09:30
+        const fechaVisita = new Date(2026, 4, 12, 9, 30, 0).getTime();
+        startCountdown(fechaVisita, "timer-visita");
+
+        // --- Script para los Corazones Flotantes ---
+        document.getElementById('corazonesBtn').addEventListener('click', function() {
+            // Cuántos corazones aparecen por clic
+            const numberOfHearts = 25; 
             
-            if (distancia < 0) {
-                clearInterval(x);
-                document.getElementById("timer").innerHTML = "¡POR FIN JUNTOS!";
+            for (let i = 0; i < numberOfHearts; i++) {
+                // Pequeño retraso entre cada corazón para un efecto de "corriente"
+                setTimeout(() => { 
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-particle';
+                    heart.innerHTML = '♥'; // Emoji de corazón
+                    
+                    // Posición horizontal aleatoria (para que no salgan todos del mismo sitio)
+                    heart.style.left = Math.random() * 95 + 'vw'; 
+                    
+                    // Duración de la animación aleatoria para un efecto más natural (entre 2 y 5 segundos)
+                    heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    
+                    // Tamaño aleatorio (entre 0.5 y 1.5 veces el tamaño original)
+                    const scale = Math.random() * 1 + 0.5;
+                    heart.style.fontSize = scale + 'rem';
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Borra el corazón del DOM después de que termine la animación (para no saturar la página)
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 5000); // El tiempo máximo de animación es 5s
+                }, i * 50); // Cada corazón se retrasa un poquito (0ms, 50ms, 100ms...)
             }
-        }, 1000);
-        */
+        });
     </script>
+
 </body>
 </html>
